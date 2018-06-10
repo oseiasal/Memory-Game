@@ -1,13 +1,13 @@
 /*
  * Create a list that holds all of your cards
  */
-var cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'];
+var cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'];
 
 /*
  * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
+ *   - shuffle the list of cards using the provided "shuffle" method below  OK
+ *   - loop through each card and create its HTML                           OK
+ *   - add each card's HTML to the page                                     OK
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -25,7 +25,11 @@ function shuffle(array) {
     return array;
 }
 
-shuffle(cards);
+cards = shuffle(cards);
+
+$('.deck .fa').each(function(index, elemento){
+$(this).addClass(cards[index]);
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
