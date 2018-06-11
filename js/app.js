@@ -7,11 +7,12 @@ let value2;
 let fisrtCard;
 let secondCard;
 let cardWaiting = false;
+let counter = 0;
 /*
  * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below  
- *   - loop through each card and create its HTML                           
- *   - add each card's HTML to the page                                     
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -34,11 +35,10 @@ $('.deck .fa').each(function (index, elemento) {
     $(this).addClass(cards[index]);
 });
 
-//2ª Parte
 $('.deck').on('click', '.card', handler); // listener Card OK
 
-//first function OK
 function handler(event) {
+
     if ($(this).hasClass('match')) {
 
         alert("Select another Card");
@@ -53,24 +53,27 @@ function handler(event) {
 
         } else {
             secondCard = $(this).children().attr('class');
+            count();
 
         }
 
         if (firstCard != null && secondCard != null && cardWaiting == false) {
             checkCardValues();
+
         }
 
     }
-    openCards();
+
 
 }
 
 function checkCardValues() {
     value1 = firstCard;
-    console.log(value1);
+    // console.log(value1);
     value2 = secondCard;
-    console.log(value2);
- 
+    // console.log(value2);
+// counter = counter + 1;
+// console.log(counter);
     if (value1 == value2) {
         //        alert("Deu Match!!");
         value1 = 0; //reseta
@@ -101,14 +104,10 @@ function nonMatch() {
     $('.deck').find('.open').removeClass('open show').addClass('wrong');
 }
 
-function openCards() {
-//    cardOpen.push("open");
-//    if (cardOpen.length > 2) { //temporario
-//        $('.card').addClass('open show');
-//        for (let i = 2; i >= 0; i--) {
-//            cardOpen.pop();
-//        }
-//    }
+function count() {
+  var moves = $('.moves');
+  counter = counter + 1;
+  moves.text(counter)
 }
 
 /*
