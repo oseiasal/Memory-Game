@@ -1,3 +1,5 @@
+
+$( document ).ready(function(){
 let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
 							'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
 							'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
@@ -9,7 +11,7 @@ let value1, value2, fisrtCard, secondCard;
 let cardWaiting = false;
 let counter = 0;
 
-$( document ).ready(function(){
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
 		let currentIndex = array.length,
