@@ -73,8 +73,7 @@ function handler(event) {
         }
 
     }
-
-
+    deadStar();
 }
 
 function checkCardValues() {
@@ -113,6 +112,19 @@ function count() {
   var moves = $('.moves');
   counter = counter + 1;
   moves.text(counter)
+}
+
+
+function deadStar(){
+  if (counter == 16) {
+  $('#star3').addClass('white');
+}
+else if (counter == 24) {
+  $('#star2').addClass('white');
+}
+else if (counter == 32) {
+  $('#star1').addClass('white');
+}
 }
 console.log("DOM is ready");
 /*
