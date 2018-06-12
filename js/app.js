@@ -30,10 +30,30 @@ function shuffle(array) {
 
     return array;
 }
-cards = shuffle(cards);
+//botão repeat
+$('.fa-repeat').click(function(){
+
+$('.deck').children().removeClass('show match open');
+$('.deck .fa').removeClass().addClass('fa')
+counter = 0;
+$('.moves').text(counter);
+
+//cards = shuffle(cards);
+shuffleCards()
+        // value1 = 0; //reseta
+        // value2 = 0; //reseta
+        // firstCard = null; //reseta
+        // secondCard = null; //reseta
+})
+
+
+shuffleCards();
+function shuffleCards(){
+  cards = shuffle(cards);
 $('.deck .fa').each(function (index, elemento) {
     $(this).addClass(cards[index]);
 });
+}
 
 $('.deck').on('click', '.card', handler); // listener Card OK
 
