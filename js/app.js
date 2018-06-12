@@ -33,7 +33,7 @@ $(document).ready(function () {
         $('#star1').removeClass('white');
         $('#star2').removeClass('white');
         $('#star3').removeClass('white');
-				$('.modal').removeClass('modal-show');
+		$('.modal').removeClass('modal-show');
         counter = 0;
         $('.moves').text(counter);
         shuffleCards();
@@ -128,7 +128,7 @@ $(document).ready(function () {
         if ($('.deck').find('.match').length == 16) {
             $('.modal').toggleClass('modal-show');
             var text = $('p').text();
-            $('p').text(text + " com " + counter + " movimentos");
+            $('p').text("Parabens, você completou o jogo com " + counter + " movimentos");
         }
 				repeat();
     }
