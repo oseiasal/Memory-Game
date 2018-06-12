@@ -143,3 +143,23 @@ h1 {
 .modal .fa-repeat {
   cursor: pointer;
 }
+
+.repeat-btn{
+    background-color: hsla(231, 48%, 48%, 0.2);
+    padding: 10px;
+    font-weight: bolder;
+    border: 0.3px solid black;
+    color: #170b09fa;
+    cursor: pointer;
+
+}
+
+.repeat-btn:hover{
+    background-color: hsla(231, 48%, 48%, 0.58);
+    padding: 10px;
+    font-weight: bolder;
+    border: 0.3px solid black;
+    color: #170b09fa;
+    cursor: pointer;
+    box-shadow:#1a210d1f 3px 3px 10px;
+}
