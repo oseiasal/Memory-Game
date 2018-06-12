@@ -8,13 +8,11 @@ let fisrtCard;
 let secondCard;
 let cardWaiting = false;
 let counter = 0;
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+let star1;
+let star2;
+let star3;
 
+$( document ).ready(function(){
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length,
@@ -32,20 +30,12 @@ function shuffle(array) {
 }
 //botão repeat
 $('.fa-repeat').click(function(){
-
-$('.deck').children().removeClass('show match open');
-$('.deck .fa').removeClass().addClass('fa')
-counter = 0;
-$('.moves').text(counter);
-
-//cards = shuffle(cards);
-shuffleCards()
-        // value1 = 0; //reseta
-        // value2 = 0; //reseta
-        // firstCard = null; //reseta
-        // secondCard = null; //reseta
-})
-
+  $('.deck').children().removeClass('show match open');
+  $('.deck .fa').removeClass().addClass('fa')
+  counter = 0;
+  $('.moves').text(counter);
+    shuffleCards()
+});
 
 shuffleCards();
 function shuffleCards(){
@@ -89,20 +79,15 @@ function handler(event) {
 
 function checkCardValues() {
     value1 = firstCard;
-    // console.log(value1);
     value2 = secondCard;
-    // console.log(value2);
-// counter = counter + 1;
-// console.log(counter);
+
     if (value1 == value2) {
-        //        alert("Deu Match!!");
         value1 = 0; //reseta
         value2 = 0; //reseta
         firstCard = null; //reseta
         secondCard = null; //reseta
         $('.deck').find('.open').addClass('match').removeClass('open show');
     } else {
-
         setTimeout(nonMatch(), 300);
         setTimeout(function () {
             $('.deck').find('.wrong').removeClass('wrong')
@@ -129,7 +114,7 @@ function count() {
   counter = counter + 1;
   moves.text(counter)
 }
-
+console.log("DOM is ready");
 /*
  * set up the event listener for a card. If a card is clicked: OK
  *  - display the card's symbol (put this functionality in another function that you call from this one) OK
@@ -140,3 +125,4 @@ function count() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+});
