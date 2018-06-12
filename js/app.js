@@ -129,9 +129,11 @@ else if (counter == 32) {
 }
 
 function myModal(){
-	if (counter == 3){
+	if ($('.deck').find('.match').length == 16){
 	$('.modal').toggleClass('modal-show');
-}
+	var text = $('p').text();
+	$('p').text(text + " com " + counter + " movimentos");
+	}
 }
 
 console.log("DOM is ready");
