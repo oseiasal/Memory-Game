@@ -27,7 +27,7 @@ $(document).ready(function () {
     //botão repeat
 		repeat();
 		function repeat(){
-    $('.fa-repeat').click(function () {
+    $('.repeat').click(function () {
         $('.deck').children().removeClass('show match open');
         $('.deck .fa').removeClass().addClass('fa');
         $('#star1').removeClass('white');
