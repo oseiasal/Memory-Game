@@ -3,13 +3,11 @@ $(document).ready(function () {
 							'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
 							'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
 							'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'];
-
     let cardOpen = [];
     let cardMatch = [];
     let value1, value2, fisrtCard, secondCard;
     let cardWaiting = false;
     let counter = 0;
-
 
     // Shuffle function from http://stackoverflow.com/a/2450976
     function shuffle(array) {
@@ -23,9 +21,9 @@ $(document).ready(function () {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     }
+
     //botão repeat
 		repeat();
 		function repeat(){
@@ -65,18 +63,14 @@ $(document).ready(function () {
 
             if (cardWaiting == true) {
                 firstCard = $(this).children().attr('class');
-
             } else {
                 secondCard = $(this).children().attr('class');
                 count();
-
             }
 
             if (firstCard != null && secondCard != null && cardWaiting == false) {
                 checkCardValues();
-
             }
-
         }
         deadStar();
         myModal();
@@ -120,7 +114,6 @@ $(document).ready(function () {
         moves.text(counter)
     }
 
-
     function deadStar() {
         if (counter == 16) {
             $('#star3').addClass('white');
@@ -141,14 +134,4 @@ $(document).ready(function () {
     }
 
     console.log("DOM is ready");
-    /*
-     * set up the event listener for a card. If a card is clicked: OK
-     *  - display the card's symbol (put this functionality in another function that you call from this one) OK
-     *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one) OK
-     *  - if the list already has another card, check to see if the two cards match ? OK
-     *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one) OK
-     *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one) OK
-     *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-     *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-     */
 });
