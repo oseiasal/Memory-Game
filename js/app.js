@@ -5,9 +5,14 @@ let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
 let cardOpen = [];
 let cardMatch = [];
 let value1, value2, fisrtCard, secondCard;
-let cardWaiting = false;
+let cardWaiting = false,
+    start = false;
 let counter = 0;
-let seconds = 0, minutes = 0, hour = 0;
+let seconds = 0,
+    minutes = 0,
+    hour = 0;
+let timerStarts = false;
+let diff, start_time, loop;
 
 $(document).ready(function () {
 
@@ -27,20 +32,21 @@ $(document).ready(function () {
     }
 
     //botão repeat
-	repeat();
+    repeat();
 
-	function repeat(){
-    $('.repeat').click(function () {
-        $('.deck').children().removeClass('show match open');
-        $('.deck .fa').removeClass().addClass('fa');
-        $('#star1').removeClass('white');
-        $('#star2').removeClass('white');
-        $('#star3').removeClass('white');
-		$('.modal').removeClass('modal-show');
-        counter = 0;
-        $('.moves').text(counter);
-        shuffleCards();
-    });}
+    function repeat() {
+        $('.repeat').click(function () {
+            $('.deck').children().removeClass('show match open');
+            $('.deck .fa').removeClass().addClass('fa');
+            $('#star1').removeClass('white');
+            $('#star2').removeClass('white');
+            $('#star3').removeClass('white');
+            $('.modal').removeClass('modal-show');
+            counter = 0;
+            $('.moves').text(counter);
+            shuffleCards();
+        });
+    }
 
     shuffleCards();
 
@@ -51,32 +57,29 @@ $(document).ready(function () {
         });
     }
 
-    $('.deck').on('click', '.card', handler); // listener Card OK
+    $('.deck').on('click', '.card', selectCard); // listener Card OK
 
-    function handler(event) {
-
+    function selectCard(event) {
         if ($(this).hasClass('match')) {
-
             alert("Select another Card");
-
         } else {
-
             $(this).toggleClass('open show');
             checkCardFlag();
-
+            timerStarts = true;
             if (cardWaiting == true) {
+                startCounting();
                 firstCard = $(this).children().attr('class');
             } else {
                 secondCard = $(this).children().attr('class');
                 count();
             }
-
             if (firstCard != null && secondCard != null && cardWaiting == false) {
                 checkCardValues();
             }
         }
         deadStar();
         myModal();
+                
     }
 
     function checkCardValues() {
@@ -133,21 +136,41 @@ $(document).ready(function () {
             var text = $('p').text();
             $('p').text("Parabens, você completou o jogo com " + counter + " movimentos");
         }
-				repeat();
+        repeat();
     }
 
-    function startTimer(){
-        setInterval(function count(){
-        seconds++;
-        $('.timer').text(`${("000" + hour).slice(-2)}:
-        ${("000" + minutes).slice(-2)}:${("000" + seconds).slice(-2)}`);
+    // important
+    function startCounting(startTime) {
+        start_time = typeof (startTime) == 'undefined' ? new Date() : startTime;
+        loop = window.setInterval(uptodate, 1000);
+    }
 
-        if(seconds >= 59) {
+    // Unavaiable to be tested
+   var uptodate = function update() {
+        printTime(format_seconds(getTime()));
+    }
 
-            minutes = minutes + 1;
+    function printTime(time) {
+        $('.timer').text(time);
+    }
+
+    function getTime() {
+        return (new Date() - start_time);
+    }
+
+    function format_seconds(seconds) {
+        if (isNaN(seconds))
             seconds = 0;
-        }
-    }, 1000);
-}
-    console.log("DOM is ready");
+        var diff = new Date(seconds);
+        var minutes = diff.getMinutes();
+        var seconds = diff.getSeconds();
+        console.log(seconds);
+        
+        if (minutes < 10)
+            minutes = "0" + minutes;
+        if (seconds < 10)
+            seconds = "0" + seconds;
+        
+        return "00:" + minutes + ":" + seconds;
+    }
 });
