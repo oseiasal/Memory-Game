@@ -36,6 +36,8 @@ $(document).ready(function () {
 
     function repeat() {
         $('.repeat').click(function () {
+            startCounting();
+            $('.start-box').addClass('start-game')
             $('.deck').children().removeClass('show match open');
             $('.deck .fa').removeClass().addClass('fa');
             $('#star1').removeClass('white');
@@ -67,7 +69,7 @@ $(document).ready(function () {
             checkCardFlag();
             timerStarts = true;
             if (cardWaiting == true) {
-                startCounting();
+                //startCounting();
                 firstCard = $(this).children().attr('class');
             } else {
                 secondCard = $(this).children().attr('class');
@@ -79,7 +81,7 @@ $(document).ready(function () {
         }
         deadStar();
         myModal();
-                
+
     }
 
     function checkCardValues() {
@@ -165,12 +167,12 @@ $(document).ready(function () {
         var minutes = diff.getMinutes();
         var seconds = diff.getSeconds();
         console.log(seconds);
-        
+
         if (minutes < 10)
             minutes = "0" + minutes;
         if (seconds < 10)
             seconds = "0" + seconds;
-        
+
         return "00:" + minutes + ":" + seconds;
     }
 });
