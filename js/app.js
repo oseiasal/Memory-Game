@@ -27,8 +27,9 @@ $(document).ready(function () {
     }
 
     //botão repeat
-		repeat();
-		function repeat(){
+	repeat();
+
+	function repeat(){
     $('.repeat').click(function () {
         $('.deck').children().removeClass('show match open');
         $('.deck .fa').removeClass().addClass('fa');
@@ -135,5 +136,18 @@ $(document).ready(function () {
 				repeat();
     }
 
+    function startTimer(){
+        setInterval(function count(){
+        seconds++;
+        $('.timer').text(`${("000" + hour).slice(-2)}:
+        ${("000" + minutes).slice(-2)}:${("000" + seconds).slice(-2)}`);
+
+        if(seconds >= 59) {
+
+            minutes = minutes + 1;
+            seconds = 0;
+        }
+    }, 1000);
+}
     console.log("DOM is ready");
 });
