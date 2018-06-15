@@ -1,7 +1,11 @@
-let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
-                        'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
-                        'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
-                        'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'];
+/*
+*	Variáveis foram declaradas como 'let'. Todas fora da $(document).ready();
+*
+*/
+
+let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
+    'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'
+];
 let value1, value2, fisrtCard, secondCard;
 let cardWaiting = false,
     start = false;
@@ -10,12 +14,15 @@ let seconds = 0,
     minutes = 0,
     hour = 0;
 let timerStarts = false;
-let diff, start_time, loop, a = 0, b=0, stars = 3;
+let diff, start_time, loop, a = 0,
+    b = 0,
+    stars = 3;
 let gameoff = true;
 
-$(document).ready(function () {
-
-    // Shuffle function from http://stackoverflow.com/a/2450976
+$(document).ready(function() {
+/* Shuffle function from http://stackoverflow.com/a/2450976
+*
+*/
     function shuffle(array) {
         let currentIndex = array.length,
             temporaryValue, randomIndex;
@@ -30,14 +37,19 @@ $(document).ready(function () {
         return array;
     }
 
-    //botão repeat
     repeat();
+	shuffleCards();
+	$('.deck').on('click', '.card', selectCard);
 
+/**
+* @name Função repeat
+* @description Função responsável por iniciar o jogo e reiniciá-lo.
+*/
     function repeat() {
-        $('.repeat').click(function () {
+        $('.repeat').click(function() {
             startCounting();
-			a = 0;
-			b = 0;
+            a = 0;
+            b = 0;
             $('.start-box').addClass('start-game')
             $('.deck').children().removeClass('show match open');
             $('.deck .fa').removeClass().addClass('fa');
@@ -51,17 +63,22 @@ $(document).ready(function () {
         });
     }
 
-    shuffleCards();
-
+/**
+*	@name Embaralhar Cartas
+*	@description Função responsável por adicionar classes ao HTML aleatoriamente.
+	Deriva do código da linha #27.
+*/
     function shuffleCards() {
         cards = shuffle(cards);
-        $('.deck .fa').each(function (index, elemento) {
+        $('.deck .fa').each(function(index, elemento) {
             $(this).addClass(cards[index]);
         });
     }
 
-    $('.deck').on('click', '.card', selectCard); // listener Card OK
-
+/**
+*	@name Selecionar Cartas
+*	@description Este é o 'handler' do event listener.
+*/
     function selectCard(event) {
         if ($(this).hasClass('match')) {
             alert("Select another Card");
@@ -82,9 +99,11 @@ $(document).ready(function () {
         }
         deadStar();
         myModal();
-
     }
-
+/**
+*	@name Checar Cartas
+	@description função responsável pela checagem e exibição das cartas.
+*/
     function checkCardValues() {
         value1 = firstCard;
         value2 = secondCard;
@@ -97,14 +116,13 @@ $(document).ready(function () {
             $('.deck').find('.open').addClass('match').removeClass('open show');
         } else {
             setTimeout(nonMatch(), 300);
-            setTimeout(function () {
+            setTimeout(function() {
                 $('.deck').find('.wrong').removeClass('wrong')
             }, 500);
         }
     }
 
     function checkCardFlag() {
-
         if (cardWaiting == false) {
             cardWaiting = true;
         } else {
@@ -118,20 +136,20 @@ $(document).ready(function () {
     }
 
     function count() {
-        var moves = $('.moves');
+        let moves = $('.moves');
         counter = counter + 1;
         moves.text(counter)
     }
 
     function deadStar() {
         if (counter == 16) {
-			stars = 2;
+            stars = 2;
             $('#star3').addClass('white');
         } else if (counter == 24) {
-			stars = 1;
+            stars = 1;
             $('#star2').addClass('white');
         } else if (counter == 32) {
-			stars = 0;
+            stars = 0;
             $('#star1').addClass('white');
         }
     }
@@ -139,27 +157,29 @@ $(document).ready(function () {
     function myModal() {
         if ($('.deck').find('.match').length == 16) {
             $('.modal').toggleClass('modal-show');
-            var text = $('p').text();
-			gameoff = false;
-			
+            let text = $('p').text();
+            gameoff = false;
+
         }
-        repeat();
     }
 
-    // important
+/**
+* @description StopWatch baseado no código disponível do site http://cronometronline.com.br.
+*  Foram feitas algumas modificações para adaptar ao projeto.
+* @author http://cronometronline.com.br
+*/
     function startCounting(startTime) {
-        start_time = typeof (startTime) == 'undefined' ? new Date() : startTime;
+        start_time = typeof(startTime) == 'undefined' ? new Date() : startTime;
         loop = window.setInterval(uptodate, 1);
     }
 
-    // Unavaiable to be tested
-   var uptodate = function update() {
+    let uptodate = function update() {
         printTime(format_seconds(getTime()));
     }
 
     function printTime(time) {
         $('.timer').text(time);
-		$('p').text(`You won the game with ${counter} moves and ${stars} stars in 00:${a}:${b}!!`);
+        $('p').text(`You won the game with ${counter} moves and ${stars} stars in 00:${a}:${b}!!`);
     }
 
     function getTime() {
@@ -169,20 +189,20 @@ $(document).ready(function () {
     function format_seconds(seconds) {
         if (isNaN(seconds))
             seconds = 0;
-        var diff = new Date(seconds);
-        var minutes = diff.getMinutes();
-        var seconds = diff.getSeconds();
+        diff = new Date(seconds);
+        minutes = diff.getMinutes();
+        seconds = diff.getSeconds();
 
         if (minutes < 10)
             minutes = "0" + minutes;
         if (seconds < 10)
             seconds = "0" + seconds;
-		
-		if (!gameoff){
-			a = minutes;
-			b = seconds;
-			gameoff = true;
-		}
-		return "00:" + minutes + ":" + seconds;
+
+        if (!gameoff) {
+            a = minutes;
+            b = seconds;
+            gameoff = true;
+        }
+        return "00:" + minutes + ":" + seconds;
     }
 });
