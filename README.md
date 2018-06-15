@@ -1,20 +1,78 @@
-# Memory Game Project
+# Projeto final do curso de Fundamentos de Front-End da Udacity.
 
-## Table of Contents
+#### Índice
+- [Sobre o Memory Game](#sobre-o-memory-game)
+- [Começando a jogar](#começando-a-jogar)
+- [Biblioteca utilizada](#biblioteca-utilizada)
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
 
-## Instructions
+## Sobre o Memory Game
+O jogo possui pares de cartas que estão embaralhadas. Para jogar, é necessário escolher duas cartas e
+caso as cartas combinem (sejam do mesmo tipo), ambas ficaram em evidência, até que o jogador encontre
+todas os outros pares de cartas.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Para embaralhar, foi utilizado as funções abaixo:
 
-To get started, open `js/app.js` and start building out the app's functionality
+```
+function shuffle(array) {
+        let currentIndex = array.length,
+            temporaryValue, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+```
+e esta:
+```
+function shuffleCards() {
+    cards = shuffle(cards);
+    $('.deck .fa').each(function(index, elemento) {
+        $(this).addClass(cards[index]);
+    });
+}
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+shuffleCards();
+```
+Está função já começa a rodar assim que a página é carregada, ou quando o botão de **reiniciar** o jogo é clicado.
 
-## Contributing
+Referência do código principal: [stackoverflow](http://stackoverflow.com/a/2450976).
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## Começando a jogar
+- Para iniciar o jogo, clique no botão **start game**.
+- O cronometro começará a contar a partir do **00:00:00**.
+- Há 3 estrelas, depois de **16 movimentos**, o jogador perde uma, depois de mais 8 (24 movimentos) o jogador perde
+  mais uma e depois de mais 8 (32 movimentos), não sobram nenhuma estrela.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Para a execução do código e iniciar do cronometro, há um *event listener* dentro da função `repeat()`:
+```
+function repeat() {
+    $('.repeat').click(function() { //linha do event listener 'click'
+        startCounting();
+        a = 0;
+        b = 0;
+        $('.start-box').addClass('start-game')
+        $('.deck').children().removeClass('show match open');
+        $('.deck .fa').removeClass().addClass('fa');
+        $('#star1').removeClass('white');
+        $('#star2').removeClass('white');
+        $('#star3').removeClass('white');
+        $('.modal').removeClass('modal-show');
+        counter = 0;
+        $('.moves').text(counter);
+        shuffleCards();
+    });
+}
+```
+Para selecionar as cartas, também é usado um *event listener*, como no código abaixo:
+```
+$('.deck').on('click', '.card', selectCard);
+```
+
+## Biblioteca utilizada
+
+Para a criação do código, foi utilizado javascript e a biblioteca [jQuery](https://jquery.com) 3.3.1.
