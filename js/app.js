@@ -2,8 +2,6 @@ let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
                         'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
                         'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb',
                         'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'];
-let cardOpen = [];
-let cardMatch = [];
 let value1, value2, fisrtCard, secondCard;
 let cardWaiting = false,
     start = false;
@@ -12,7 +10,8 @@ let seconds = 0,
     minutes = 0,
     hour = 0;
 let timerStarts = false;
-let diff, start_time, loop;
+let diff, start_time, loop, a = 0, b=0, stars = 3;
+let gameoff = true;
 
 $(document).ready(function () {
 
@@ -37,6 +36,8 @@ $(document).ready(function () {
     function repeat() {
         $('.repeat').click(function () {
             startCounting();
+			a = 0;
+			b = 0;
             $('.start-box').addClass('start-game')
             $('.deck').children().removeClass('show match open');
             $('.deck .fa').removeClass().addClass('fa');
@@ -124,10 +125,13 @@ $(document).ready(function () {
 
     function deadStar() {
         if (counter == 16) {
+			stars = 2;
             $('#star3').addClass('white');
         } else if (counter == 24) {
+			stars = 1;
             $('#star2').addClass('white');
         } else if (counter == 32) {
+			stars = 0;
             $('#star1').addClass('white');
         }
     }
@@ -136,7 +140,8 @@ $(document).ready(function () {
         if ($('.deck').find('.match').length == 16) {
             $('.modal').toggleClass('modal-show');
             var text = $('p').text();
-            $('p').text("Parabens, você completou o jogo com " + counter + " movimentos");
+			gameoff = false;
+			
         }
         repeat();
     }
@@ -144,7 +149,7 @@ $(document).ready(function () {
     // important
     function startCounting(startTime) {
         start_time = typeof (startTime) == 'undefined' ? new Date() : startTime;
-        loop = window.setInterval(uptodate, 1000);
+        loop = window.setInterval(uptodate, 1);
     }
 
     // Unavaiable to be tested
@@ -154,6 +159,7 @@ $(document).ready(function () {
 
     function printTime(time) {
         $('.timer').text(time);
+		$('p').text(`You won the game with ${counter} moves and ${stars} stars in 00:${a}:${b}!!`);
     }
 
     function getTime() {
@@ -166,13 +172,17 @@ $(document).ready(function () {
         var diff = new Date(seconds);
         var minutes = diff.getMinutes();
         var seconds = diff.getSeconds();
-        console.log(seconds);
 
         if (minutes < 10)
             minutes = "0" + minutes;
         if (seconds < 10)
             seconds = "0" + seconds;
-
-        return "00:" + minutes + ":" + seconds;
+		
+		if (!gameoff){
+			a = minutes;
+			b = seconds;
+			gameoff = true;
+		}
+		return "00:" + minutes + ":" + seconds;
     }
 });

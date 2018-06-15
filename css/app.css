@@ -120,6 +120,7 @@ h1 {
 
 .white {
   color: white;
+  text-shadow: 0px 0px 1px black;
 }
 
 /*
