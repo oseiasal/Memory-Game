@@ -1,7 +1,7 @@
 /*
-*	Variáveis foram declaradas como 'let'. Todas fora da $(document).ready();
-*
-*/
+ *	Variáveis foram declaradas como 'let'. Todas fora da $(document).ready();
+ *
+ */
 
 let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
     'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'
@@ -20,9 +20,9 @@ let diff, start_time, loop, a = 0,
 let gameoff = true;
 
 $(document).ready(function() {
-/* Shuffle function from http://stackoverflow.com/a/2450976
-*
-*/
+    /* Shuffle function from http://stackoverflow.com/a/2450976
+     *
+     */
     function shuffle(array) {
         let currentIndex = array.length,
             temporaryValue, randomIndex;
@@ -38,13 +38,13 @@ $(document).ready(function() {
     }
 
     repeat();
-	shuffleCards();
-	$('.deck').on('click', '.card', selectCard);
+    shuffleCards();
+    $('.deck').on('click', '.card', selectCard);
 
-/**
-* @name Função repeat
-* @description Função responsável por iniciar o jogo e reiniciá-lo.
-*/
+    /**
+     * @name Função repeat
+     * @description Função responsável por iniciar o jogo e reiniciá-lo.
+     */
     function repeat() {
         $('.repeat').click(function() {
             startCounting();
@@ -63,11 +63,11 @@ $(document).ready(function() {
         });
     }
 
-/**
-*	@name Embaralhar Cartas
-*	@description Função responsável por adicionar classes ao HTML aleatoriamente.
-	Deriva do código da linha #27.
-*/
+    /**
+    *	@name Embaralhar Cartas
+    *	@description Função responsável por adicionar classes ao HTML aleatoriamente.
+    	Deriva do código da linha #27.
+    */
     function shuffleCards() {
         cards = shuffle(cards);
         $('.deck .fa').each(function(index, elemento) {
@@ -75,10 +75,10 @@ $(document).ready(function() {
         });
     }
 
-/**
-*	@name Selecionar Cartas
-*	@description Este é o 'handler' do event listener.
-*/
+    /**
+     *	@name Selecionar Cartas
+     *	@description Este é o 'handler' do event listener.
+     */
     function selectCard(event) {
         if ($(this).hasClass('match')) {
             alert("Select another Card");
@@ -100,19 +100,19 @@ $(document).ready(function() {
         deadStar();
         myModal();
     }
-/**
-*	@name Checar Cartas
-	@description função responsável pela checagem e exibição das cartas.
-*/
+    /**
+    *	@name Checar Cartas
+    	@description função responsável pela checagem e exibição das cartas.
+    */
     function checkCardValues() {
         value1 = firstCard;
         value2 = secondCard;
 
         if (value1 == value2) {
-            value1 = 0; //reseta
-            value2 = 0; //reseta
-            firstCard = null; //reseta
-            secondCard = null; //reseta
+            value1 = 0;
+            value2 = 0;
+            firstCard = null;
+            secondCard = null;
             $('.deck').find('.open').addClass('match').removeClass('open show');
         } else {
             setTimeout(nonMatch(), 300);
@@ -163,11 +163,11 @@ $(document).ready(function() {
         }
     }
 
-/**
-* @description StopWatch baseado no código disponível do site http://cronometronline.com.br.
-*  Foram feitas algumas modificações para adaptar ao projeto.
-* @author http://cronometronline.com.br
-*/
+    /**
+     * @description StopWatch baseado no código disponível do site http://cronometronline.com.br.
+     *  Foram feitas algumas modificações para adaptar ao projeto.
+     * @author http://cronometronline.com.br
+     */
     function startCounting(startTime) {
         start_time = typeof(startTime) == 'undefined' ? new Date() : startTime;
         loop = window.setInterval(uptodate, 1);
