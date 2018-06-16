@@ -1,212 +1,444 @@
-html {
-    box-sizing: border-box;
+@media only screen and (max-width: 768px) {
+    html {
+        box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #ffffff url('../img/geometry2.png');
+        font-family: 'Coda', cursive;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        font-size: 2.5em;
+        margin-top: 2px;
+    }
+
+    /*
+     * Styles for the deck of cards
+     */
+
+    .deck {
+        width: 435px;
+        min-height: 448.8px;
+        background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+        padding: 21.12px;
+        border-radius: 5px;
+        box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 3em;
+    }
+
+    .deck .card {
+        height: 82.5px;
+        width: 82.5px;
+        background: #2e3d49;
+        font-size: 0;
+        color: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 2px 20px 0 rgba(#2e3d49, 0.5);
+    }
+
+    .deck .card.open {
+        transform: rotateY(0);
+        background: #02b3e4;
+        cursor: default;
+    }
+
+    .deck .card.show {
+        font-size: 33px;
+    }
+
+    .deck .card.match {
+        cursor: default;
+        background: #02ccba;
+        font-size: 33px;
+    }
+
+    .deck .card.wrong {
+        cursor: default;
+        background: #d4062e;
+        font-size: 33px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+
+    .score-panel {
+        text-align: left;
+        width: 345px;
+        margin-bottom: 10px;
+        font-size: 1.5em;
+    }
+
+    .score-panel .stars {
+        padding: 0;
+        display: inline-block;
+        margin: 0 5px 0 0;
+    }
+
+    .score-panel .stars li {
+        list-style: none;
+        display: inline-block;
+    }
+
+    .score-panel .restart {
+        float: right;
+        cursor: pointer;
+    }
+
+    .timer {
+        display: block;
+    }
+
+    .white {
+        color: white;
+        text-shadow: 0px 0px 1px black;
+    }
+
+    /*
+    * Style for myModal
+    */
+
+    .modal {
+        display: none;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        margin: 0 auto;
+        background: white;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .modal-content {
+        font-size: 1.4em;
+    }
+
+    .modal-show {
+        display: flex;
+    }
+
+    .modal .fa-repeat {
+        cursor: pointer;
+    }
+
+    .repeat-btn {
+        background-color: rgba(#4051b5, 0.2) #4051b5;
+        padding: 10px;
+        font-weight: bolder;
+        border: 0.3px solid black;
+        color: #170b09fa;
+        cursor: pointer;
+    }
+
+    .repeat-btn:hover {
+        background-color: rgba(#4051b5, 0.58) #4051b5;
+        padding: 10px;
+        font-weight: bolder;
+        border: 0.3px solid black;
+        color: #170b09fa;
+        cursor: pointer;
+        box-shadow: #1a210d1f 3px 3px 10px;
+    }
+
+    .start-box {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        background-color: #607d8b;
+    }
+
+    .start-btn {
+        margin: 0 auto;
+        height: 30%;
+        width: 50%;
+        background: #607d8b;
+        position: relative;
+        top: 200px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start {
+        font-size: 3em;
+        cursor: pointer;
+    }
+
+    .start:hover {
+        text-shadow: 2px 2px yellowgreen;
+    }
+
+    .start::after,
+    .start::before {
+        content: " ";
+        width: 100%;
+        height: 10px;
+        background: white;
+        display: block;
+    }
+
+    .start-game {
+        display: none;
+    }
+
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
+@media only screen and (max-width: 500px) {
+    html {
+        box-sizing: border-box;
+    }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
 
-body {
-    background: #ffffff url('../img/geometry2.png');
-    font-family: 'Coda', cursive;
-}
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+    body {
+        background: #ffffff url('../img/geometry2.png');
+        font-family: 'Coda', cursive;
+    }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-/*
- * Styles for the deck of cards
- */
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        font-size:  2.3em;
+    }
 
-.deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
-}
+    /*
+     * Styles for the deck of cards
+     */
 
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(#2e3d49, 0.5);
-}
+    .deck {
+        width: 290px;
+        min-height: 309.6px;
+        background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+        padding: 21.12px;
+        border-radius: 5px;
+        box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 3em;
+    }
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
+    .deck .card {
+        height: 56.92px;
+        width: 56.92px;
+        background: #2e3d49;
+        font-size: 0;
+        color: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 2px 20px 0 rgba(#2e3d49, 0.5);
+    }
 
-.deck .card.show {
-    font-size: 33px;
-}
+    .deck .card.open {
+        transform: rotateY(0);
+        background: #02b3e4;
+        cursor: default;
+    }
 
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
+    .deck .card.show {
+        font-size: 33px;
+    }
 
-.deck .card.wrong {
-    cursor: default;
-    background: #d4062e;
-    font-size: 33px;
-}
+    .deck .card.match {
+        cursor: default;
+        background: #02ccba;
+        font-size: 33px;
+    }
 
-/*
- * Styles for the Score Panel
- */
+    .deck .card.wrong {
+        cursor: default;
+        background: #d4062e;
+        font-size: 33px;
+    }
 
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
-}
+    /*
+     * Styles for the Score Panel
+     */
 
-.score-panel .stars {
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-}
+    .score-panel {
+        text-align: left;
+        width: 238px;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+    }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
+    .score-panel .stars {
+        padding: 0;
+        display: inline-block;
+        margin: 0 5px 0 0;
+    }
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-}
+    .score-panel .stars li {
+        list-style: none;
+        display: inline-block;
+    }
 
-.timer {
-    display: block;
-}
+    .score-panel .restart {
+        float: right;
+        cursor: pointer;
+    }
 
-.white {
-    color: white;
-    text-shadow: 0px 0px 1px black;
-}
+    .timer {
+        display: block;
+    }
 
-/*
-* Style for myModal
-*/
+    .white {
+        color: white;
+        text-shadow: 0px 0px 1px black;
+    }
 
-.modal {
-    display: none;
-    top: 20px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-    margin: 0 auto;
-    background: white;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+    /*
+    * Style for myModal
+    */
 
-.modal-show {
-    display: flex;
-}
+    .modal {
+        display: none;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        margin: 0 auto;
+        background: white;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-.modal .fa-repeat {
-    cursor: pointer;
-}
+    .modal-content {
+        font-size: 1.2em;
+    }
 
-.repeat-btn {
-    background-color: rgba(#4051b5, 0.2) #4051b5;
-    padding: 10px;
-    font-weight: bolder;
-    border: 0.3px solid black;
-    color: #170b09fa;
-    cursor: pointer;
-}
+    .modal-show {
+        display: flex;
+    }
 
-.repeat-btn:hover {
-    background-color: rgba(#4051b5, 0.58) #4051b5;
-    padding: 10px;
-    font-weight: bolder;
-    border: 0.3px solid black;
-    color: #170b09fa;
-    cursor: pointer;
-    box-shadow: #1a210d1f 3px 3px 10px;
-}
+    .modal .fa-repeat {
+        cursor: pointer;
+    }
 
-.start-box {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 25px;
-    display: flex;
-    background-color: #607d8b;
-}
+    .repeat-btn {
+        background-color: rgba(#4051b5, 0.2) #4051b5;
+        padding: 10px;
+        font-weight: bolder;
+        border: 0.3px solid black;
+        color: #170b09fa;
+        cursor: pointer;
+    }
 
-.start-btn {
-    margin: 0 auto;
-    height: 30%;
-    width: 30%;
-    background: #607d8b;
-    position: relative;
-    top: 300px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .repeat-btn:hover {
+        background-color: rgba(#4051b5, 0.58) #4051b5;
+        padding: 10px;
+        font-weight: bolder;
+        border: 0.3px solid black;
+        color: #170b09fa;
+        cursor: pointer;
+        box-shadow: #1a210d1f 3px 3px 10px;
+    }
 
-.start {
-    font-size: 3em;
-    cursor: pointer;
-}
+    .start-box {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        background-color: #607d8b;
+    }
 
-.start:hover {
-    text-shadow: 2px 2px yellowgreen;
-}
+    .start-btn {
+        margin: 0 auto;
+        height: 30%;
+        width: 100%;
+        background: #607d8b;
+        position: relative;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 50px;
+    }
 
-.start::after,
-.start::before {
-    content: " ";
-    width: 100%;
-    height: 10px;
-    background: white;
-    display: block;
-}
+    .start {
+        font-size: 3em;
+        cursor: pointer;
+    }
 
-.start-game {
-    display: none;
+    .start:hover {
+        text-shadow: 2px 2px yellowgreen;
+    }
+
+    .start::after,
+    .start::before {
+        content: " ";
+        width: 100%;
+        height: 10px;
+        background: white;
+        display: block;
+    }
+
+    .start-game {
+        display: none;
+    }
+
 }
