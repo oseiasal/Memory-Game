@@ -3,9 +3,18 @@
  *
  */
 
-let cards = ['fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond',
-    'fa-paper-plane-o', 'fa-anchor', 'fa-bicycle', 'fa-bomb', 'fa-leaf', 'fa-bolt', 'fa-cube', 'fa-diamond'
-];
+ let allCards = [
+     'fa-paper-plane-o',
+     'fa-anchor',
+    'fa-bicycle',
+    'fa-bomb',
+    'fa-leaf',
+    'fa-bolt',
+    'fa-cube',
+    'fa-diamond',
+ ];
+
+ let cards = allCards.concat(allCards);
 let value1, value2, fisrtCard, secondCard;
 let cardWaiting = false,
     start = false;
@@ -50,6 +59,11 @@ $(document).ready(function() {
             startCounting();
             a = 0;
             b = 0;
+            value1 = 0;
+            value2 = 0;
+            // firstCard = undefined;
+            // secondCard = undefined;
+            cardWaiting = false;
             $('.start-box').addClass('start-game')
             $('.deck').children().removeClass('show match open');
             $('.deck .fa').removeClass().addClass('fa');
@@ -87,12 +101,11 @@ $(document).ready(function() {
             checkCardFlag();
             timerStarts = true;
             if (cardWaiting == true) {
-                //startCounting();
                 firstCard = $(this).children().attr('class');
-            } else {
+            } else  {
                 secondCard = $(this).children().attr('class');
-                count();
             }
+
             if (firstCard != null && secondCard != null && cardWaiting == false) {
                 checkCardValues();
             }
@@ -102,12 +115,11 @@ $(document).ready(function() {
     }
     /**
     *	@name Checar Cartas
-    	@description função responsável pela checagem e exibição das cartas.
+    *	@description função responsável pela checagem e exibição das cartas.
     */
     function checkCardValues() {
         value1 = firstCard;
         value2 = secondCard;
-
         if (value1 == value2) {
             value1 = 0;
             value2 = 0;
@@ -148,9 +160,6 @@ $(document).ready(function() {
         } else if (counter == 24) {
             stars = 1;
             $('#star2').addClass('white');
-        } else if (counter == 32) {
-            stars = 0;
-            $('#star1').addClass('white');
         }
     }
 
