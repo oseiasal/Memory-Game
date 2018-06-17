@@ -3,18 +3,18 @@
  *
  */
 
- let allCards = [
-     'fa-paper-plane-o',
-     'fa-anchor',
+let allCards = [
+    'fa-paper-plane-o',
+    'fa-anchor',
     'fa-bicycle',
     'fa-bomb',
     'fa-leaf',
     'fa-bolt',
     'fa-cube',
     'fa-diamond',
- ];
+];
 
- let cards = allCards.concat(allCards);
+let cards = allCards.concat(allCards);
 let value1, value2, fisrtCard, secondCard;
 let cardWaiting = false,
     start = false;
@@ -61,8 +61,8 @@ $(document).ready(function() {
             b = 0;
             value1 = 0;
             value2 = 0;
-            // firstCard = undefined;
-            // secondCard = undefined;
+            firstCard = null;
+            secondCard = null;
             cardWaiting = false;
             $('.start-box').addClass('start-game')
             $('.deck').children().removeClass('show match open');
@@ -96,13 +96,32 @@ $(document).ready(function() {
     function selectCard(event) {
         if ($(this).hasClass('match')) {
             alert("Select another Card");
-        } else {
+            // cardWaiting = true;
+            // fisrtCard = undefined;
+            // secondCard = undefined;
+return;
+        }
+        //TODO: Criar uma condição para que o contador conte sem escolher a mesma carta
+        if ($(this).hasClass('open')) {
+            console.log("outra carta");
+            $(this).toggleClass('open show');
+            cardWaiting = false;
+            // fisrtCard = null;
+            // secondCard = null;
+            return;
+        }
+
+        else {
             $(this).toggleClass('open show');
             checkCardFlag();
             timerStarts = true;
+
             if (cardWaiting == true) {
                 firstCard = $(this).children().attr('class');
-            } else  {
+            }
+
+            else {
+                count();
                 secondCard = $(this).children().attr('class');
             }
 
@@ -114,9 +133,9 @@ $(document).ready(function() {
         myModal();
     }
     /**
-    *	@name Checar Cartas
-    *	@description função responsável pela checagem e exibição das cartas.
-    */
+     *	@name Checar Cartas
+     *	@description função responsável pela checagem e exibição das cartas.
+     */
     function checkCardValues() {
         value1 = firstCard;
         value2 = secondCard;
@@ -127,6 +146,7 @@ $(document).ready(function() {
             secondCard = null;
             $('.deck').find('.open').addClass('match').removeClass('open show');
         } else {
+
             setTimeout(nonMatch(), 300);
             setTimeout(function() {
                 $('.deck').find('.wrong').removeClass('wrong')
