@@ -73,6 +73,13 @@ Para selecionar as cartas, também é usado um *event listener*, como no código
 $('.deck').on('click', '.card', selectCard);
 ```
 
-## Biblioteca utilizada
+## Dependências
+### Biblioteca utilizada
 
-Para a criação do código, foi utilizado javascript e a biblioteca [jQuery](https://jquery.com) 3.3.1.
+- Para a criação do código, foi utilizado javascript e a biblioteca [jQuery](https://jquery.com) 3.3.1.
+
+### Estilização
+
+- A estilização da jogo está no arquivo [css/app.css](css/app.css).
+- Para a criação das figuras como avião, estrelas, bombas, etc. foram  foi utilzado um arquivo css da FontAwesome: [link](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css). Este arquivo (ou `<link ...>`), encontrasse no `head` do arquivo.
+-  A fonte utilizada, obtida no Google Fonts pode ser encontrada [aqui](https://fonts.googleapis.com/css?family=Coda).

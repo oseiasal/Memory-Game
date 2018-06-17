@@ -99,7 +99,7 @@ $(document).ready(function() {
             // cardWaiting = true;
             // fisrtCard = undefined;
             // secondCard = undefined;
-return;
+            return;
         }
         //TODO: Criar uma condição para que o contador conte sem escolher a mesma carta
         if ($(this).hasClass('open')) {
@@ -109,18 +109,14 @@ return;
             // fisrtCard = null;
             // secondCard = null;
             return;
-        }
-
-        else {
+        } else {
             $(this).toggleClass('open show');
             checkCardFlag();
             timerStarts = true;
 
             if (cardWaiting == true) {
                 firstCard = $(this).children().attr('class');
-            }
-
-            else {
+            } else {
                 count();
                 secondCard = $(this).children().attr('class');
             }
