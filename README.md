@@ -1,4 +1,4 @@
-# Projeto final do curso de Fundamentos de Front-End da Udacity.
+# Memory Game
 
 #### Índice
 - [Sobre o Memory Game](#sobre-o-memory-game)
